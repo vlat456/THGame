@@ -42,9 +42,6 @@ public class TireHero extends ApplicationAdapter {
 		viewport = new FillViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
 		viewport.apply();
 
-
-
-
 		// Textures
 		myTexture = new Texture("texture.png");
 
@@ -91,5 +88,11 @@ public class TireHero extends ApplicationAdapter {
 
 		stage.draw();
 		stage.act();
+	}
+
+	@Override
+	public void dispose() {
+		// TODO: Should actor be disposed too?
+		stage.dispose();
 	}
 }

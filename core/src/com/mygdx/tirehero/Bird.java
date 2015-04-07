@@ -54,7 +54,6 @@ public class Bird extends Actor {
     }
 
     public void onClick() {
-        Gdx.app.log("TireHero", "clicked");
         velocity.y = 140; // TODO: Make constant too
     }
 }
