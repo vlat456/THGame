@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -27,8 +28,10 @@ public class TireHero extends ApplicationAdapter {
 	private TextureRegion bg;
 
 	private Bird bird;
-	private int bgX = 0; // TODO: See below, this is for test purposes only
-	private int bgX1 = 0;
+
+	private Scrollable bg1;
+	private Scrollable bg2;
+
 	@Override
 	public void create () {
 		Gdx.app.log("Tire Hero", "created");
@@ -61,58 +64,27 @@ public class TireHero extends ApplicationAdapter {
 			}
 		});
 
-		// TODO: Well, this SHOULD be refactored!
-		bgX1 = (int)camera.viewportWidth;
-		stage.addActor(new Actor() {
-			@Override
-			public void draw(Batch batch, float parentAlpha) {
-				batch.draw(bg, bgX, camera.viewportHeight / 2, camera.viewportWidth, bg.getRegionHeight()*2);
-				batch.draw(bg, bgX1, camera.viewportHeight / 2, camera.viewportWidth, bg.getRegionHeight()*2);
-			}
+		bg1 = new Scrollable(bg,new Vector2(0,camera.viewportWidth/2), camera.viewportWidth,
+				bg.getRegionHeight()*2, -200, true);
+		bg2 = new Scrollable(bg,new Vector2(camera.viewportWidth,camera.viewportWidth/2),
+				camera.viewportWidth, bg.getRegionHeight()*2, -200, true);
 
-			@Override
-			public void act(float delta) {
-				bgX-=1;
-				bgX1-=1;
+		stage.addActor(bg1);
+		stage.addActor(bg2);
 
-				if (bgX+camera.viewportWidth < 0) {
-					bgX = bgX + (int)(2*camera.viewportWidth);
-				}
-
-				if (bgX1+camera.viewportWidth < 0) {
-					bgX1 = bgX1 + (int)(2*camera.viewportWidth);
-				}
-			}
-		});
 		stage.addActor(bird);
 		Gdx.input.setInputProcessor(stage);
-
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		viewport.update(width, height);
-
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		//batch.setProjectionMatrix(camera.combined);
-		//batch.begin();
-		//batch.disableBlending();
-		/* TODO: To inspect, since such approach causes non-uniform scale */
-
-
-
-		//batch.draw(bg, 0, camera.viewportHeight / 2, bg.getRegionWidth(), bg.getRegionHeight()*2);
-
-
-
-		//batch.enableBlending();
-		//batch.end();
 
 		stage.draw();
 		stage.act();
