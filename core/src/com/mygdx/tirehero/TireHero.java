@@ -30,7 +30,8 @@ public class TireHero extends ApplicationAdapter {
 	private Bird bird;
 
 	private Scrollable bg1;
-	private Scrollable bg2;
+
+	private Group background;
 
 	@Override
 	public void create () {
@@ -66,11 +67,11 @@ public class TireHero extends ApplicationAdapter {
 
 		bg1 = new Scrollable(bg,new Vector2(0,camera.viewportWidth/2), camera.viewportWidth,
 				bg.getRegionHeight()*2, -200, true);
-		bg2 = new Scrollable(bg,new Vector2(camera.viewportWidth,camera.viewportWidth/2),
-				camera.viewportWidth, bg.getRegionHeight()*2, -200, true);
 
+		//background.addActor(bg1);
+		//.addActor(bg2);
 		stage.addActor(bg1);
-		stage.addActor(bg2);
+		//stage.addActor(bg2);
 
 		stage.addActor(bird);
 		Gdx.input.setInputProcessor(stage);
