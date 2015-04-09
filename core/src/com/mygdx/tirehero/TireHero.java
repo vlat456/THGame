@@ -40,7 +40,6 @@ public class TireHero extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		//camera.setToOrtho(false, 1000, 1000);
 
-
 		/* TODO: Sort out this viewport thing, and make tests in Android emulator */
 		viewport = new FillViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
 		viewport.apply();
@@ -66,9 +65,13 @@ public class TireHero extends ApplicationAdapter {
 		});
 
 		bg1 = new Scrollable(bg,new Vector2(0,camera.viewportWidth/2), camera.viewportWidth,
-				bg.getRegionHeight()*2, -200, true);
+				bg.getRegionHeight()*2,-120 , true);
 
+		Scrollable bg2 = new Scrollable(bg,new Vector2(0,camera.viewportWidth/5), camera.viewportWidth,
+				bg.getRegionHeight()*2, -550, true);
 		stage.addActor(bg1);
+		stage.addActor(bg2);
+
 		stage.addActor(bird);
 		Gdx.input.setInputProcessor(stage);
 	}

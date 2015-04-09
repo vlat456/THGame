@@ -1,5 +1,6 @@
 package com.mygdx.tirehero;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -12,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 public class Scrollable extends Actor {
 
     private Vector2 position;
-    private float speed = -100;
+    private float speed;
     private TextureRegion region;
     private float width = 1;
     private float height = 1;
@@ -43,9 +44,8 @@ public class Scrollable extends Actor {
 
     @Override
     public void act(float delta) {
-        super.act(delta);
+       // super.act(delta);
         position.x += speed * delta;
-
         // Note! Assuming texture width = camera.viewport width!
         if (endless) {
             /* Right-to-left */
@@ -54,20 +54,21 @@ public class Scrollable extends Actor {
                     position.x = position.x + 2 * width;
                 }
 
-                position2.x += speed * delta;
                 if (position2.x + width < 0) {
                     position2.x = position2.x + 2 * width;
                 }
+                position2.x += speed * delta;
+
             }
             /* Left-to-right */
             else if (speed > 0) {
                 if (position.x > width) {
                     position.x = 0;
                 }
-                position2.x += speed * delta;
-                if (position2.x > 0) {      // if pos2 is right offscreen
+                if (position2.x > 0) {      // if pos2 is right offscreen;
                     position2.x = -width;   // move it to left with with
                 }
+                position2.x += speed * delta;
             }
         }
     }
