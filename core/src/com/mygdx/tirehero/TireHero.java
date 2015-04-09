@@ -68,11 +68,7 @@ public class TireHero extends ApplicationAdapter {
 		bg1 = new Scrollable(bg,new Vector2(0,camera.viewportWidth/2), camera.viewportWidth,
 				bg.getRegionHeight()*2, -200, true);
 
-		//background.addActor(bg1);
-		//.addActor(bg2);
 		stage.addActor(bg1);
-		//stage.addActor(bg2);
-
 		stage.addActor(bird);
 		Gdx.input.setInputProcessor(stage);
 	}

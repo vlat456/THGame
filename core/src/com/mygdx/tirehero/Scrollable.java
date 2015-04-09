@@ -46,15 +46,28 @@ public class Scrollable extends Actor {
         super.act(delta);
         position.x += speed * delta;
 
-        // TODO: Right now works with only right-to-left direction
-        if (position.x + width < 0) {
-            position.x = position.x + 2 * width;
-        }
-
+        // Note! Assuming texture width = camera.viewport width!
         if (endless) {
-            position2.x += speed * delta;
-            if (position2.x + width < 0) {
-                position2.x = position2.x + 2 * width;
+            /* Right-to-left */
+            if (speed < 0) {
+                if (position.x + width < 0) {
+                    position.x = position.x + 2 * width;
+                }
+
+                position2.x += speed * delta;
+                if (position2.x + width < 0) {
+                    position2.x = position2.x + 2 * width;
+                }
+            }
+            /* Left-to-right */
+            else if (speed > 0) {
+                if (position.x > width) {
+                    position.x = 0;
+                }
+                position2.x += speed * delta;
+                if (position2.x > 0) {      // if pos2 is right offscreen
+                    position2.x = -width;   // move it to left with with
+                }
             }
         }
     }
