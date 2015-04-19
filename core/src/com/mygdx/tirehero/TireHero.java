@@ -65,10 +65,10 @@ public class TireHero extends ApplicationAdapter {
 		});
 
 		bg1 = new Scrollable(bg,new Vector2(0,camera.viewportWidth/2), camera.viewportWidth,
-				bg.getRegionHeight()*2,-120 , true);
+				bg.getRegionHeight()*2,120 , true);
 
 		Scrollable bg2 = new Scrollable(bg,new Vector2(0,camera.viewportWidth/5), camera.viewportWidth,
-				bg.getRegionHeight()*2, -550, true);
+				bg.getRegionHeight()*2, 350, true);
 		stage.addActor(bg1);
 		stage.addActor(bg2);
 
